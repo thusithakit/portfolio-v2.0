@@ -883,7 +883,7 @@ export default function PortfolioPage() {
                   </svg>
                   <div className="flex flex-col">
                     <span className="font-mono text-[9px] uppercase tracking-wider text-ink-300">LinkedIn</span>
-                    <span className="font-semibold text-cream-100">thusitha-kithuldora-780b4417b</span>
+                    <span className="font-semibold text-cream-100">thusitha-kithuldora</span>
                   </div>
                 </a>
 
