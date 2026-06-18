@@ -113,7 +113,7 @@ export default function AdminChatPage() {
     checkAuth();
   }, []);
 
-  // 2. Initialize Push Notification support checks
+  // 2. Initialize Push Notification support checks & register FCM Service Worker
   useEffect(() => {
     if (isAuthenticated && typeof window !== "undefined") {
       const hasSupport =
@@ -121,15 +121,23 @@ export default function AdminChatPage() {
         "PushManager" in window &&
         "Notification" in window;
       
-      setTimeout(() => {
+      setTimeout(async () => {
         setPushSupported(hasSupport);
 
-        // Check if permission is already granted and token exists in localStorage
-        if (hasSupport && Notification.permission === "granted") {
-          const savedToken = localStorage.getItem("fcm_registration_token");
-          if (savedToken) {
-            setFcmToken(savedToken);
-            setIsSubscribed(true);
+        if (hasSupport) {
+          try {
+            await navigator.serviceWorker.register("/firebase-messaging-sw.js");
+            
+            // Check if permission is already granted and token exists in localStorage
+            if (Notification.permission === "granted") {
+              const savedToken = localStorage.getItem("fcm_registration_token");
+              if (savedToken) {
+                setFcmToken(savedToken);
+                setIsSubscribed(true);
+              }
+            }
+          } catch (err) {
+            console.error("FCM Service Worker registration failed:", err);
           }
         }
       }, 0);
