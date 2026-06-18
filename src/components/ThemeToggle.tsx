@@ -10,15 +10,17 @@ export default function ThemeToggle() {
   useEffect(() => {
     // Get initial theme on mount to prevent mismatch
     const currentTheme = (document.documentElement.getAttribute("data-theme") as "light" | "dark") || "light";
-    setTheme(currentTheme);
-    setReady(true);
+    setTimeout(() => {
+      setTheme(currentTheme);
+      setReady(true);
+    }, 0);
   }, []);
 
   const toggleTheme = (e: React.MouseEvent<HTMLButtonElement>) => {
     const nextTheme = theme === "dark" ? "light" : "dark";
 
     // Check if View Transitions API is supported by the browser
-    if (!(document as any).startViewTransition) {
+    if (!document.startViewTransition) {
       setTheme(nextTheme);
       document.documentElement.setAttribute("data-theme", nextTheme);
       localStorage.setItem("site-theme", nextTheme);
@@ -35,7 +37,7 @@ export default function ThemeToggle() {
       Math.max(y, window.innerHeight - y)
     );
 
-    const transition = (document as any).startViewTransition(() => {
+    const transition = document.startViewTransition(() => {
       flushSync(() => {
         setTheme(nextTheme);
         document.documentElement.setAttribute("data-theme", nextTheme);

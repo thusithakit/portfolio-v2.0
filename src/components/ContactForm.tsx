@@ -78,7 +78,7 @@ export default function ContactForm() {
         origin: { y: 0.6 },
         colors: ["#dec5ab", "#c9a589", "#8fa2ff", "#f5f1e8"],
       });
-    } catch (err) {
+    } catch {
       setErrorMessage("Could not connect to server. Please check your internet connection.");
       setStatus("error");
     }
@@ -110,7 +110,7 @@ export default function ContactForm() {
     >
       <div className="flex flex-col gap-1">
         <h3 className="font-display text-xl font-semibold text-cream-100">Drop a Message</h3>
-        <p className="text-xs text-ink-200">Have a project, job opening, or idea? Let's build it together.</p>
+        <p className="text-xs text-ink-200">Have a project, job opening, or idea? Let&apos;s build it together.</p>
       </div>
 
       {status === "error" && errorMessage && (

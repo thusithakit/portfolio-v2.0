@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { saveContactMessage } from "@/lib/firebase";
+import { saveContactMessage } from "@/lib/firebaseServer";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),

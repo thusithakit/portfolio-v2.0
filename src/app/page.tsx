@@ -24,6 +24,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import ConstellationCanvas from "@/components/ConstellationCanvas";
 import ContactForm from "@/components/ContactForm";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import ChatWidget from "@/components/ChatWidget";
 
 // Project Database
 const projects = [
@@ -465,7 +466,7 @@ export default function PortfolioPage() {
                 My background includes studying Electronic and Computer Science at the University of Kelaniya, giving me solid foundational knowledge in object-oriented programming, data structures, and computer networking. I bridge the gap between backend data models and client-side screens.
               </p>
               <p>
-                Whether it's production micro-frontends, e-learning products, or digital profile platforms, I focus on performance, semantic structure, WCAG accessibility, and testing. My stack includes React, TypeScript, Next.js, Redux, and Tailwind CSS.
+                Whether it&apos;s production micro-frontends, e-learning products, or digital profile platforms, I focus on performance, semantic structure, WCAG accessibility, and testing. My stack includes React, TypeScript, Next.js, Redux, and Tailwind CSS.
               </p>
 
               {/* History Timeline */}
@@ -936,6 +937,9 @@ export default function PortfolioPage() {
         </footer>
 
       </main>
+
+      {/* Floating real-time live chat widget */}
+      <ChatWidget />
     </>
   );
 }

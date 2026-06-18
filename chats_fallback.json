@@ -1,0 +1,31 @@
+{
+  "chat_azmrtdp66n": {
+    "id": "chat_azmrtdp66n",
+    "visitorName": "Thusitha",
+    "visitorEmail": "thusithakit3@gmail.com",
+    "lastMessage": "Hii",
+    "lastActive": "2026-06-18T07:48:40.416Z",
+    "unreadCountAdmin": 3,
+    "unreadCountVisitor": 0,
+    "messages": [
+      {
+        "id": "p1tnijl",
+        "sender": "visitor",
+        "text": "hi",
+        "timestamp": "2026-06-18T07:45:55.141Z"
+      },
+      {
+        "id": "1xqpjby",
+        "sender": "visitor",
+        "text": "hello",
+        "timestamp": "2026-06-18T07:48:01.640Z"
+      },
+      {
+        "id": "y5mf0a9",
+        "sender": "visitor",
+        "text": "Hii",
+        "timestamp": "2026-06-18T07:48:40.416Z"
+      }
+    ]
+  }
+}
