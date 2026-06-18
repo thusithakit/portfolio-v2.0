@@ -49,16 +49,41 @@ export async function saveContactMessage(data: Omit<ContactSubmission, "timestam
     timestamp: new Date().toISOString(),
   };
 
+  const writeToLocalFile = async () => {
+    try {
+      const fs = await import("fs");
+      const path = await import("path");
+      const filePath = path.join(process.cwd(), "contacts_fallback.json");
+      let existing = [];
+      if (fs.existsSync(filePath)) {
+        existing = JSON.parse(fs.readFileSync(filePath, "utf-8") || "[]");
+      }
+      existing.push(submission);
+      fs.writeFileSync(filePath, JSON.stringify(existing, null, 2), "utf-8");
+    } catch (err) {
+      console.error("Failed to write contact message to local fallback file:", err);
+    }
+  };
+
   if (db) {
-    const contactRef = collection(db, "contacts");
-    await addDoc(contactRef, submission);
-    return { success: true, destination: "firestore" };
+    try {
+      const contactRef = collection(db, "contacts");
+      await addDoc(contactRef, submission);
+      return { success: true, destination: "firestore" };
+    } catch (error) {
+      console.warn("Firestore write failed, falling back to local file. Error:", error);
+      await writeToLocalFile();
+      return { success: true, destination: "local_file_fallback" };
+    }
   } else {
     // Local mock database fallback
     if (typeof window !== "undefined") {
       const existing = JSON.parse(localStorage.getItem("contact_submissions") || "[]");
       existing.push(submission);
       localStorage.setItem("contact_submissions", JSON.stringify(existing));
+    } else {
+      // Server-side fallback when Firebase is not configured
+      await writeToLocalFile();
     }
     // Simulate database network delay
     await new Promise((resolve) => setTimeout(resolve, 800));

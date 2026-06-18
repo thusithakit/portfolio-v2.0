@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Test User",
+    "email": "test@example.com",
+    "message": "Hello, this is a test message to verify the local JSON fallback is working.",
+    "timestamp": "2026-06-18T07:06:01.575Z"
+  }
+]
