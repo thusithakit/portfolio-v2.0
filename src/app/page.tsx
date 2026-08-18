@@ -29,6 +29,12 @@ import ChatWidget from "@/components/ChatWidget";
 // Project Database
 const projects = [
   {
+    title: "VibeQueue",
+    desc: "VibeQueue lets your group curate a hangout playlist together, blind. Suggest your favorite songs, vote on what stays, and hide who added what until the final reveal. Pure music, zero bias.",
+    tech: ["Next.js", "TypeScript", "Firebase RTDB", "Clerk", "Zustand", "Push Notifications"],
+    link: "https://vibequeue.vercel.app/",
+  },
+  {
     title: "ConnectWithMe.digital",
     desc: "A modern personal branding and digital profile sharing platform built with Clerk authentication, QR code sharing, vCard contact capabilities, and Cloudinary media delivery.",
     tech: ["Next.js", "TypeScript", "Prisma", "Clerk", "Cloudinary"],
@@ -58,7 +64,7 @@ const projects = [
 const timelineItems = [
   {
     year: "'25 - Pres",
-    title: "Trainee Software Engineer at Qoria LK",
+    title: "Software Engineer at Qoria LK",
     desc: "Working on EdTech Insights production micro-frontends with React + TS, Redux, and Chakra UI with full WCAG accessibility compliance."
   },
   {
@@ -67,7 +73,7 @@ const timelineItems = [
     desc: "Studied core software engineering, data structures, and computer systems at University of Kelaniya, Sri Lanka."
   },
   {
-    year: "'20 - '25",
+    year: "'23 - '25",
     title: "UI Developer at Kongcepts",
     desc: "Developed responsive websites, converted Figma layouts to pixel-perfect code, and optimized loading performance and SEO rankings."
   }
