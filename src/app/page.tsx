@@ -29,6 +29,12 @@ import ChatWidget from "@/components/ChatWidget";
 // Project Database
 const projects = [
   {
+    title: "VibeQueue",
+    desc: "VibeQueue lets your group curate a hangout playlist together, blind. Suggest your favorite songs, vote on what stays, and hide who added what until the final reveal. Pure music, zero bias.",
+    tech: ["Next.js", "TypeScript", "Firebase RTDB", "Clerk", "Zustand", "Push Notifications"],
+    link: "https://vibequeue.vercel.app/",
+  },
+  {
     title: "ConnectWithMe.digital",
     desc: "A modern personal branding and digital profile sharing platform built with Clerk authentication, QR code sharing, vCard contact capabilities, and Cloudinary media delivery.",
     tech: ["Next.js", "TypeScript", "Prisma", "Clerk", "Cloudinary"],
@@ -58,7 +64,7 @@ const projects = [
 const timelineItems = [
   {
     year: "'25 - Pres",
-    title: "Trainee Software Engineer at Qoria LK",
+    title: "Software Engineer at Qoria LK",
     desc: "Working on EdTech Insights production micro-frontends with React + TS, Redux, and Chakra UI with full WCAG accessibility compliance."
   },
   {
@@ -67,7 +73,7 @@ const timelineItems = [
     desc: "Studied core software engineering, data structures, and computer systems at University of Kelaniya, Sri Lanka."
   },
   {
-    year: "'20 - '25",
+    year: "'23 - '25",
     title: "UI Developer at Kongcepts",
     desc: "Developed responsive websites, converted Figma layouts to pixel-perfect code, and optimized loading performance and SEO rankings."
   }
@@ -503,7 +509,7 @@ export default function PortfolioPage() {
                 <dl className="flex flex-col gap-4 text-xs md:text-sm">
                   <div className="grid grid-cols-[80px_1fr] items-baseline gap-2 border-b border-ink-200/14 pb-2.5">
                     <dt className="font-mono text-[9px] uppercase tracking-wider text-peach-400">Currently</dt>
-                    <dd className="text-cream-100 font-medium">Trainee Software Engineer at Qoria LK</dd>
+                    <dd className="text-cream-100 font-medium">Software Engineer at Qoria LK</dd>
                   </div>
 
                   <div className="grid grid-cols-[80px_1fr] items-baseline gap-2 border-b border-ink-200/14 pb-2.5">
@@ -650,14 +656,14 @@ export default function PortfolioPage() {
             <div className="p-6 bg-panel-bg border border-panel-border rounded-2xl flex flex-col md:flex-row gap-6 md:justify-between">
               <div className="flex flex-col gap-1">
                 <span className="font-mono text-[10px] uppercase tracking-wider text-peach-400">Current Role</span>
-                <h3 className="font-display font-semibold text-cream-100 text-lg md:text-xl">Trainee Software Engineer</h3>
+                <h3 className="font-display font-semibold text-cream-100 text-lg md:text-xl">Software Engineer</h3>
                 <span className="text-xs text-ink-300 flex items-center gap-1.5 mt-0.5">
                   <Briefcase className="h-3.5 w-3.5 text-peach-300" />
                   <span>Qoria LK · Sep 2025 - Present</span>
                 </span>
               </div>
               <p className="text-xs md:text-sm text-ink-200 max-w-md leading-relaxed">
-                Working on EdTech Insights, a production-level EdTech micro-frontend application using React, TypeScript, Redux, and Vite Module Federation. Responsible for WCAG accessibility compliance and unit testing via Vitest.
+                Working on EdTech Manager, a production-level EdTech micro-frontend application using React, TypeScript, Redux, and Vite Module Federation. Responsible for WCAG accessibility compliance and unit testing via Vitest.
               </p>
             </div>
 
