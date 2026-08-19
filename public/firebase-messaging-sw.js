@@ -1,10 +1,14 @@
 importScripts("https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js");
 importScripts("https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js");
 
-// Initialize the Firebase app in the service worker
-// The messagingSenderId matches NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID in the project .env
+// Initialize the Firebase app in the service worker with full configuration
 firebase.initializeApp({
-  messagingSenderId: "1456973235"
+  apiKey: "AIzaSyDyybr9inkQzoyTtILWIBX9bwYoXbnEhRM",
+  authDomain: "portfolio-v2-b14fe.firebaseapp.com",
+  projectId: "portfolio-v2-b14fe",
+  storageBucket: "portfolio-v2-b14fe.firebasestorage.app",
+  messagingSenderId: "1456973235",
+  appId: "1:1456973235:web:6ea1e2a4a8a3e9d14d97c6"
 });
 
 const messaging = firebase.messaging();
