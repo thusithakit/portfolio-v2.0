@@ -26,39 +26,6 @@ import ContactForm from "@/components/ContactForm";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import ChatWidget from "@/components/ChatWidget";
 
-// Project Database
-const projects = [
-  {
-    title: "VibeQueue",
-    desc: "VibeQueue lets your group curate a hangout playlist together, blind. Suggest your favorite songs, vote on what stays, and hide who added what until the final reveal. Pure music, zero bias.",
-    tech: ["Next.js", "TypeScript", "Firebase RTDB", "Clerk", "Zustand", "Push Notifications"],
-    link: "https://vibequeue.vercel.app/",
-  },
-  {
-    title: "ConnectWithMe.digital",
-    desc: "A modern personal branding and digital profile sharing platform built with Clerk authentication, QR code sharing, vCard contact capabilities, and Cloudinary media delivery.",
-    tech: ["Next.js", "TypeScript", "Prisma", "Clerk", "Cloudinary"],
-    link: "https://www.connectwithme.digital",
-  },
-  {
-    title: "Sanit.lk Business Website",
-    desc: "Freelance client business site with 20+ reusable custom UI components, achieving a 98+ Lighthouse performance score and full meta SEO optimization.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "SEO"],
-    link: "https://sanit-demo.netlify.app/",
-  },
-  {
-    title: "Smart Garbage Bin",
-    desc: "IoT smart system integrating ultrasonic sensors, GPS tracking, and Firebase to monitor waste levels, coupled with a Progressive Web App (PWA) responsive dashboard.",
-    tech: ["Next.js", "TypeScript", "ESP8266", "Firebase", "PWA"],
-    link: "https://github.com/thusithakit/go-green",
-  },
-  {
-    title: "Travel Planner Website",
-    desc: "Full-stack travel planner platform containing interactive customer itinerary boards, comprehensive admin panel management, and secure JWT token validation flows.",
-    tech: ["React", "Spring Boot", "MongoDB", "TypeScript"],
-    link: "https://github.com/thusithakit/Odyssey-admin-panel",
-  }
-];
 
 // Timeline Database
 const timelineItems = [
@@ -89,12 +56,37 @@ interface GravityNode {
   color: string;
 }
 
+interface Project {
+  id: string | number,
+  name: string,
+  description: string,
+  url?: string,
+  language?: string,
+  stars?: number,
+  lastUpdated?: string,
+  tech?: string[],
+  link?: string
+}
+
 export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState("top");
   const [hue, setHue] = useState(25); // Peach hue default
   const physicsCanvasRef = useRef<HTMLCanvasElement>(null);
   const physicsNodesRef = useRef<GravityNode[]>([]);
   const physicsFrameRef = useRef<number | null>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    async function fetchProjects() {
+      const res = await fetch('/api/projects');
+      const data = await res.json();
+      setProjects(data);
+      setLoading(false);
+    }
+    
+    fetchProjects();
+  }, []);
 
   // Scrollspy logic
   useEffect(() => {
@@ -709,31 +701,38 @@ export default function PortfolioPage() {
                 <div className="flex flex-col gap-3">
                   <div className="flex justify-between items-baseline">
                     <h3 className="font-display font-semibold text-cream-100 text-lg md:text-xl group-hover:text-peach-300 transition-colors">
-                      {proj.title}
+                      {proj.name}
                     </h3>
                     <span className="font-mono text-[8px] tracking-widest text-ink-300 uppercase bg-ink-900/80 px-2 py-0.5 rounded border border-ink-200/14">
                       Build 0{i + 1}
                     </span>
                   </div>
-                  <p className="text-xs md:text-sm text-ink-200 leading-relaxed">
-                    {proj.desc}
-                  </p>
+                  {(proj.description !=="") && (
+                    <p className="text-xs md:text-sm text-ink-200 leading-relaxed">
+                      {proj.description}
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-4 mt-6">
                   {/* Tech tags */}
                   <div className="flex flex-wrap gap-1.5">
-                    {proj.tech.map((t, idx) => (
-                      <span key={idx} className="font-mono text-[9px] text-peach-300 bg-peach-400/5 px-2.5 py-0.5 rounded-full border border-peach-300/10">
-                        {t}
-                      </span>
+                    {[...new Set([...(proj.tech || []), proj.language])]
+                      .filter(Boolean) // Removes undefined/null in case proj.language doesn't exist
+                      .map((t, idx) => (
+                        <span 
+                          key={idx} 
+                          className="font-mono text-[9px] text-peach-300 bg-peach-400/5 px-2.5 py-0.5 rounded-full border border-peach-300/10"
+                        >
+                          {t}
+                        </span>
                     ))}
                   </div>
 
                   {/* GitHub link */}
                   <div className="border-t border-ink-200/14 pt-3 flex justify-between items-center">
                     <a
-                      href={proj.link}
+                      href={proj.link || proj.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 text-xs text-cream-100 font-medium hover:text-peach-300 transition-all"
